@@ -24,15 +24,14 @@ const HeroExperience = () => {
 
         <Particles count={200}/>
         <group
-           scale={isMobile? 0.7 : 1} 
-           position={[0, -3.5, 0]}
-           rotation={[0, -Math.PI/4, 0]}
-
-        />
-        <Room />
-
+                scale={isMobile? 0.7 : 1} 
+                position={[0, -3.5, 0]}
+                rotation={[0, -Math.PI/4, 0]}
+            >
+               <Room /> 
+        </group>
     </Canvas>
-)
+    )
 }
 
 export default HeroExperience
