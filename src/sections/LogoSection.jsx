@@ -29,7 +29,7 @@ const LogoSection = () => {
             </div>
         </div>
     </div>
-  )
+  ) 
 }
 
 export default LogoSection

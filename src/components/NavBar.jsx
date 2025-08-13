@@ -8,18 +8,18 @@ const NavBar = () => {
     useEffect(()=>{
         const handleScrolled = () =>{
             const isScrolled = window.scrollY > 10
-            setScrolled(true)
+            setScrolled(isScrolled)
         }
 
         window.addEventListener('scroll', handleScrolled)
         return () => window.removeEventListener('scroll', handleScrolled)
     }, [])
 
-  return (
+  return ( 
     <header className={`navbar  ${scrolled ? 'scrolled' : 'not-scrolled'}`}>
         <div className="inner">
             <a className="logo" href="#hero">
-                Edu Guiedi
+                Arnold HGE (This portfolio is still under development)
             </a>
 
             <nav className="desktop">
