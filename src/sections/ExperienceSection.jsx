@@ -17,9 +17,9 @@ const ExperienceSection = () => {
     gsap.utils.toArray('.timeline-card').forEach((card) => {
       gsap.from(card, {
             xPercent: -100,
-            opacity: 0, 
+            opacity: 0,
             transformOrigin: 'left left',
-            duration: 1, 
+            duration: 1,
             ease: 'power2.inOut',
             scrollTrigger: {
               trigger: card,
@@ -34,21 +34,21 @@ const ExperienceSection = () => {
       scrollTrigger: {
         trigger: '.timeline',
         start: 'top center',
-        end: '70% center', 
+        end: '70% center',
         onUpdate: (self) => {
           gsap.to('.timeline', {
             scaleY: 1- self.progress,
           })
         }
       }
-    }) 
+    })
 
 
     gsap.utils.toArray('.expText').forEach((text) => {
     gsap.from(text, {
           xPercent: 0,
-          opacity: 0, 
-          duration: 1, 
+          opacity: 0,
+          duration: 1,
           ease: 'power2.inOut',
           scrollTrigger: {
             trigger: text,
@@ -57,25 +57,26 @@ const ExperienceSection = () => {
 
         })});
     }, [])
-   
 
 
 
   return (
     <section id='experience' className='w-full md:mt-40 mt-20 section-padding xl:px-0'>
         <div className='w-full h-full md:px-20 px-5'>
-            <TitleHeader 
-                title="Project Experience" 
-                sub="💻My Practical Skills Overview" />
-                
-            <div className="mt-32 relative>">
+            <TitleHeader
+                title="Projets Techniques"
+                sub="// du hardware jusqu'au modèle" />
+
+            <div className="mt-32 relative">
                 <div className='relative z-50 xl:space-y-32 space-y-10'>
                   {expCards.map((card, index) =>
                       <div key={card.title} className='exp-card-wrapper'>
                         <div className='xl:w-2/6'>
                          <GlowCard card={card} index={index}>
                             <div>
-                              <img src={card.imgPath} alt={card.title}/>
+                              <p className="font-mono text-xs uppercase tracking-widest text-amber">
+                                {card.date}
+                              </p>
                             </div>
                          </GlowCard>
                         </div>
@@ -89,19 +90,21 @@ const ExperienceSection = () => {
 
                             <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
                               <div className="timeline-logo">
-                                <img src={card.logoPath} alt="logo"/>
+                                <span className="font-mono text-amber text-xs">
+                                  {String(index + 1).padStart(2, '0')}
+                                </span>
                               </div>
                               <div>
-                                <h1 className="front-semibold text-3xl">{card.title}</h1>
-                                <p className="my-5 text-white-50">
-                                  📆{card.date}
+                                <h1 className="font-semibold text-3xl">{card.title}</h1>
+                                <p className="my-5 text-white-50 font-mono text-sm">
+                                  {card.date}
                                 </p>
-                                <p className="text-[#839cb5] italic">
-                                  Responsibilities
+                                <p className="text-cyan italic">
+                                  Détails techniques
                                 </p>
-                                <ul className="list-disc ms-5 mt-5 flex felx-col gap-5 text-white-50">
+                                <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
                                   {card.responsibilities.map((responsibility) => (
-                                    <li key={responsibility} className = "text-lg"> 
+                                    <li key={responsibility} className = "text-lg">
                                       {responsibility}
                                     </li>
                                   )

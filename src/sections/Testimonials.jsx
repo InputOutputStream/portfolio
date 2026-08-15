@@ -7,21 +7,18 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="flex-center section-padding">
         <div className = "w-full h-full md:px-10 px-5">
-            <TitleHeader 
-                title="My Fields of Interest" 
-                sub="Will choose a better sub later"
+            <TitleHeader
+                title="Distinctions & Projets Marquants"
+                sub="// ce qui a été jugé, pas juste écrit"
             />
-            <div className="lg:columns-3 md:columns-2 mt-16">
-                {testimonials.map(({imgPath, name, mentions, review}) => (
-                    <GlowCard card={{review}}>
-                        <div className="flex items-center gap-3">
-                            <div>
-                                <img src={imgPath} alt={name} />    
-                            </div>                  
-                            <div>
-                                <p className="font-bold">{name}</p>                       
-                                <p className="text-white-50">{mentions}</p>                       
-                            </div>
+            <div className="lg:columns-2 md:columns-2 mt-16 gap-6">
+                {testimonials.map((card, index) => (
+                    <GlowCard card={card} index={index} key={card.name}>
+                        <div>
+                            <p className="font-mono text-xs uppercase tracking-widest text-amber mb-1">
+                                {card.mentions}
+                            </p>
+                            <p className="font-bold text-lg">{card.name}</p>
                         </div>
                     </GlowCard>
                 ))}

@@ -48,8 +48,8 @@ const Contact = () => {
     <section id="contact" ClassName="flex-center section-padding">
         <div className="w-full h-full md:px-10 px-5">
             <TitleHeader 
-                title="Get in Touch With Me"
-                sub="Contact Info"
+                title="Parlons de votre projet"
+                sub="// disponible pour stage & missions"
             />
 
             <div className="mt-16 grid-12-cols"> 
@@ -99,7 +99,7 @@ const Contact = () => {
                             <button type="submit" disabled={loading}>
                                 <div className="cta-button group">
                                     <div className="bg-circle" />
-                                    <p className="text">{loading ? 'Sending ...':'Send Message'}</p>
+                                    <p className="text text-color-[#2ECDB3] ">{loading ? 'Sending ...':'Send Message'}</p>
                                     <div className="arrow-wrapper">
                                         <img src="/images/arrow-down.svg" alt="arrow"/>
                                     </div>    

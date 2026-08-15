@@ -15,24 +15,24 @@ const NavBar = () => {
         return () => window.removeEventListener('scroll', handleScrolled)
     }, [])
 
-  return ( 
+  return (
     <header className={`navbar  ${scrolled ? 'scrolled' : 'not-scrolled'}`}>
         <div className="inner">
             <a className="logo" href="#hero">
-                Arnold HGE (This portfolio is still under development)
+                arnold@systems:~$
             </a>
 
             <nav className="desktop">
                 <ul>
                     {
-                        navLinks.map(({link, name}) => 
+                        navLinks.map(({link, name}) =>
                             <li key={name} className="group">
                                 <a href={link}>
                                     <span>{name}</span>
                                     <span className="underline"/>
                                 </a>
                             </li>
-                        
+
                         )
                     }
                 </ul>

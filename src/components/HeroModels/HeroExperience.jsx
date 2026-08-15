@@ -1,17 +1,30 @@
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { useMediaQuery } from 'react-responsive';
-import {Room} from './Room'
+import { useMemo } from 'react';
+import { Room } from './Room'
 import HeroLights from './HeroLights';
-import Particles from './Particles'
+import SpaceScene from './SpaceScene';
+import StarField from './StarField';
+
+// Day: 6h30–18h30 local time → Room. Otherwise → SpaceScene (Gargantua + planets).
+const isDaytime = () => {
+  const now = new Date();
+  const minutes = now.getHours() * 60 + now.getMinutes();
+  return minutes >= 6 * 60 + 30 && minutes < 18 * 60 + 30;
+};
 
 const HeroExperience = () => {
     const isTablet = useMediaQuery({ query:'(max-width: 1024px)'});
     const isMobile = useMediaQuery({ query:'(max-width: 768px)'});
 
+    // computed once per mount — a hard refresh at the day/night boundary
+    // will pick up the new scene, no need for a live clock here
+    const daytime = useMemo(() => isDaytime(), []);
+
   return (
     <Canvas camera={{position: [2, 5, 6], fov : 70}}>
-        <OrbitControls 
+        <OrbitControls
             enablePan={false}
             enableZoom={!isTablet}
             maxDistance={20}
@@ -20,16 +33,24 @@ const HeroExperience = () => {
             maxPolarAngle={Math.PI/2}
         />
 
-        <HeroLights />
-
-        {/* <Particles count={200}/> */}
-        <group
-                scale={isMobile? 0.7 : 1} 
-                position={[0, -3.5, 0]}
-                rotation={[0, -Math.PI/4, 0]}
-            >
-               <Room /> 
-        </group>
+        {daytime ? (
+          <>
+            <HeroLights />
+            <group
+                    scale={isMobile? 0.7 : 1}
+                    position={[0, -3.5, 0]}
+                    rotation={[0, -Math.PI/4, 0]}
+                >
+                   <Room />
+            </group>
+            <StarField count={isMobile ? 120 : 250} color="#3DB8E8" radius={10} />
+          </>
+        ) : (
+          <>
+            <SpaceScene />
+            <StarField count={isMobile ? 150 : 350} color="#5FB875" radius={16} />
+          </>
+        )}
     </Canvas>
     )
 }

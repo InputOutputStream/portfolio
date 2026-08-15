@@ -1,6 +1,5 @@
 import { Environment, OrbitControls } from '@react-three/drei'
 import React from 'react'
-import { positionGeometry } from 'three/tsl'
 import { Computer } from '../components/Computer'
 import { Canvas } from '@react-three/fiber'
 

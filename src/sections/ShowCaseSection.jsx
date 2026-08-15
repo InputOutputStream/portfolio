@@ -56,12 +56,14 @@ const ShowCaseSection = () => {
                 {/* {leftside} */}
                 <div className="first-project-wrapper" ref={project1Ref}>
                     <div className="image-wrapper">
-                        <img src="/images/project1.png" alt="Ryde"/> {/* Remplcaer avec les images de mes propre projets */}
+                        <img src="/images/project1.png" alt="Thoth Cloud"/>
                     </div>
                     <div className="text-content">
-                        <h2> On demand Rides made simple with a powerful, user-friendly app called ryde</h2>
+                        <h2>Thoth Cloud — a multi-tenant IaaS platform I'm building from scratch</h2>
                         <p className="text-white-50 md:text-xl">
-                            Talk about the app here with the technologies, defficulties and all the other usefull stuffs
+                            C++ backend (cpp-httplib) over libvirt, orchestrating KVM virtual machines and
+                            Docker Swarm workloads across multiple physical hosts. Handles VM creation, live
+                            migration, snapshots, and noVNC console access — tested with 10+ simultaneous VMs.
                         </p>
                     </div> 
 
@@ -69,18 +71,18 @@ const ShowCaseSection = () => {
                 {/* {Rightside} */}
                 <div className="project-list-wrapper overflow-hidden">
                     <div className="project" ref={project2Ref}>
-                        <div className="image-wrapper bg-[#ffefdb]">
-                            <img src="/images/project2.png" alt="Library Management" />
+                        <div className="image-wrapper bg-[#16213e]">
+                            <img src="/images/project2.png" alt="PKI Infrastructure" />
                         </div>
-                        <h2> Library Management platform</h2>
+                        <h2>PKI Infrastructure & universal TLS wrapper</h2>
                     </div>
 
 
                      <div className="project" ref={project3Ref}>
-                        <div className="image-wrapper bg-[#ffe7eb]">
-                            <img src="/images/project3.png" alt="YC Directory" />
+                        <div className="image-wrapper bg-[#0f3460]">
+                            <img src="/images/project3.png" alt="IntelliStore" />
                         </div>
-                        <h2> YC- Directory A startupShowcase App</h2>
+                        <h2>IntelliStore — vision-based auto-checkout system</h2>
                     </div>
                 </div>
             </div>
