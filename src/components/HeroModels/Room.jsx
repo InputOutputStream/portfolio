@@ -12,7 +12,7 @@ import * as THREE from "three";
 export function Room(props) {
   const { nodes, materials } = useGLTF(import.meta.env.BASE_URL + "models/optimized-room.glb");
   const screensRef = useRef();
-  const matcapTexture = useTexture(import.meta.env.BASE_URL + "models/optimized-room.glb");
+  const matcapTexture = useTexture(import.meta.env.BASE_URL + "images/textures/mat1.png");
 
   const curtainMaterial = new THREE.MeshPhongMaterial({
     color: "#d90429",

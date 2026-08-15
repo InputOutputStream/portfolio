@@ -1,4 +1,3 @@
-const imgPath = import.meta.env.BASE_URL + "images/arrow-down.svg"
 const Button = ({text, className, id}) => {
   return (
     <a 
@@ -19,7 +18,7 @@ const Button = ({text, className, id}) => {
         <div className="bg-circle"/>
         <p className="text">{text}</p>
         <div className="arrow-wrapper">
-          <img src={imgPath} alt="arrow" />
+          <img src={`${import.meta.env.BASE_URL}images/arrow-down.svg`} alt="arrow" />
         </div>
       </div>
     </a>
