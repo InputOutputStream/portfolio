@@ -2,15 +2,15 @@
 @import "tailwindcss";
 
 :root {
-  --gradient: radial-gradient(circle, #2a2419 0%, #0b0d10 100%);
+  --gradient: radial-gradient(circle, #19242a 0%, #0a0d12 100%);
 }
 
 html,
 body {
   width: 100dvw;
   overflow-x: hidden;
-  background-color: #0b0d10;
-  color: #e9e4d8;
+  background-color: #0a0d12;
+  color: #dce8e9;
   scroll-behavior: smooth;
   font-family: "IBM Plex Sans", sans-serif;
 }
@@ -23,20 +23,20 @@ section {
   --font-sans: "IBM Plex Sans", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
 
-  /* Base surfaces — deep blue-charcoal, not pure black */
-  --color-white-50: #e9e4d8;      /* warm off-white, "phosphor glass" */
-  --color-black-50: #1c1a15;      /* warm dark panel */
-  --color-black-100: #0b0d10;     /* void background */
-  --color-black-200: #14181d;     /* card / panel background */
+  /* Base surfaces */
+  --color-white-50: #dce8e9;
+  --color-black-50: #16202e;
+  --color-black-100: #0a0d12;
+  --color-black-200: #121a24;
 
-  /* Accent — amber (CRT / certificate seal) replaces generic blue */
-  --color-blue-50: #c9a876;       /* muted amber-tan for secondary text */
-  --color-blue-100: #241f16;      /* amber-tinted panel for forms */
+  /* Accent */
+  --color-blue-50: #76a8c9;
+  --color-blue-100: #16222e;
 
   /* New accent tokens */
-  --color-amber: #e8a33d;
-  --color-amber-dim: #a8763a;
-  --color-cyan: #5fb8b0;
+  --color-amber: #3d9be8;
+  --color-amber-dim: #3a5ea8;
+  --color-cyan: #5fb8ea;
 }
 
 @layer utilities {
@@ -360,20 +360,20 @@ section {
   width: 2px;
   background: linear-gradient(
     0deg,
-    rgba(232, 163, 61, 0) 0%,
-    #5fb8b0 25%,
-    #e8a33d 62.83%,
-    #a8763a 92.91%
+    rgba(61,155,232,0) 0%,
+    #5fb8ea 25%,
+    #3d9be8 62.83%,
+    #3a5ea8 92.91%
   );
 }
 
 .gradient-edge:nth-of-type(1) {
   left: 0;
-  background: linear-gradient(90deg, rgba(11, 13, 16, 1) 0%, rgba(11, 13, 16, 0) 100%);
+  background: linear-gradient(90deg, rgba(10,13,18,1) 0%, rgba(10,13,18,0) 100%);
 }
 .gradient-edge:nth-of-type(2) {
   right: 0;
-  background: linear-gradient(-90deg, rgba(11, 13, 16, 1) 0%, rgba(11, 13, 16, 0) 100%);
+  background: linear-gradient(-90deg, rgba(10,13,18,1) 0%, rgba(10,13,18,0) 100%);
 }
 
 /* marquee */
@@ -423,7 +423,7 @@ section {
     conic-gradient(
       from calc((var(--start) - 15) * 1deg),
       #ffffff1f 0deg,
-      #e8a33d,
+      #3d9be8,
       #ffffff00 100deg
     );
   mask-composite: intersect;
@@ -451,5 +451,5 @@ section {
 /* Terminal-style prompt prefix used in section headers */
 .prompt::before {
   content: "$ ";
-  color: var(--color-amber, #e8a33d);
+  color: var(--color-amber, #3d9be8);
 }

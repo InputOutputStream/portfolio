@@ -18,15 +18,17 @@ const SpaceScene = () => {
   const blackHole = useGLTF('/models/gargantua_the_black_hole.glb')
   const planetA = useGLTF('/models/stylized_planet.glb')
   const planetB = useGLTF('/models/purple_planet.glb')
+  const planetC = useGLTF('/models/sun.glb')
 
   const blackHoleRef = useRef()
   const planetARef = useRef()
   const planetBRef = useRef()
+  const planetCRef = useRef()
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
     if (blackHoleRef.current) {
-      blackHoleRef.current.rotation.z = t * 0.05
+      blackHoleRef.current.rotation.z = t * 0.1
     }
     if (planetARef.current) {
       planetARef.current.position.x = Math.cos(t * 0.15) * 4.5
@@ -38,6 +40,13 @@ const SpaceScene = () => {
       planetBRef.current.position.z = Math.sin(t * 0.1 + Math.PI) * 6 - 2
       planetBRef.current.rotation.y = t * 0.2
     }
+    if (planetCRef.current) {    
+      planetCRef.current.position.x = Math.cos(t * 0.07) * 8
+      planetCRef.current.position.z = Math.sin(t * 0.07) * 8 - 2
+      planetCRef.current.rotation.y = t * 0.15
+    }
+
+    
   })
 
   return (
@@ -46,12 +55,16 @@ const SpaceScene = () => {
         <primitive object={blackHole.scene} />
       </group>
 
-      <group ref={planetARef} scale={0.35}>
+      <group ref={planetARef} scale={0.25}>
         <primitive object={planetA.scene} />
       </group>
 
-      <group ref={planetBRef} scale={0.25}>
+      <group ref={planetBRef} scale={0.35}>
         <primitive object={planetB.scene} />
+      </group>
+
+      <group ref={planetCRef} scale={0.5}>
+        <primitive object={planetC.scene} />
       </group>
 
       <ambientLight intensity={0.35} color="#5fb8b0" />
@@ -63,5 +76,6 @@ const SpaceScene = () => {
 useGLTF.preload('/models/gargantua_the_black_hole.glb')
 useGLTF.preload('/models/stylized_planet.glb')
 useGLTF.preload('/models/purple_planet.glb')
+useGLTF.preload('/models/sun.glb')
 
 export default SpaceScene
