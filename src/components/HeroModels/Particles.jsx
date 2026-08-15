@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 // Orbiting "data particles" around the black hole — replaces the old falling
 // snow effect with something that actually fits a systems/AI theme: points
 // drifting on slightly tilted elliptical orbits, like debris in an accretion disk.
-const Particles = ({ count = 260 }) => {
+const Particles = ({ count = 160 }) => {
   const mesh = useRef();
 
   const particles = useMemo(() => {
