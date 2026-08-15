@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
 export function BlackHole(props) {
-  const { scene } = useGLTF('/models/gargantua_the_black_hole.glb')
+  const { scene } = useGLTF(import.meta.env.BASE_URL + "models/gargantua_the_black_hole.glb")
   const ref = useRef()
 
   // slow, constant self-rotation — reads as "alive" without being distracting
@@ -18,4 +18,4 @@ export function BlackHole(props) {
   )
 }
 
-useGLTF.preload('/models/gargantua_the_black_hole.glb')
+useGLTF.preload(import.meta.env.BASE_URL + "models/gargantua_the_black_hole.glb")

@@ -71,7 +71,7 @@ const ShowCaseSection = () => {
                     >
                         <div className="image-wrapper">
                             <img
-                                src="/images/project1.png"
+                                src={import.meta.env.BASE_URL + "images/project1.png"}
                                 alt="Thoth Cloud"
                             />
                         </div>
@@ -102,7 +102,7 @@ const ShowCaseSection = () => {
                         >
                             <div className="image-wrapper bg-[#16213e]">
                                 <img
-                                    src="/images/project2.png"
+                                    src={import.meta.env.BASE_URL + "images/project2.png"}
                                     alt="PKI Infrastructure"
                                 />
                             </div>
@@ -118,7 +118,7 @@ const ShowCaseSection = () => {
                         >
                             <div className="image-wrapper bg-[#0f3460]">
                                 <img
-                                    src="/images/project3.png"
+                                    src={import.meta.env.BASE_URL + "images/project3.png"}
                                     alt="IntelliStore"
                                 />
                             </div>

@@ -14,11 +14,12 @@ import { useFrame } from '@react-three/fiber'
  *   purple_planet.glb
  *   sun.glb
  */
+
 const SpaceScene = () => {
-  const blackHole = useGLTF('/models/gargantua_the_black_hole.glb')
-  const planetA = useGLTF('/models/stylized_planet.glb')
-  const planetB = useGLTF('/models/purple_planet.glb')
-  const planetC = useGLTF('/models/sun.glb')
+  const blackHole = useGLTF(import.meta.env.BASE_URL + 'models/gargantua_the_black_hole.glb')
+  const planetA = useGLTF(import.meta.env.BASE_URL + 'models/stylized_planet.glb')
+  const planetB = useGLTF(import.meta.env.BASE_URL + 'models/purple_planet.glb')
+  const planetC = useGLTF(import.meta.env.BASE_URL + 'models/sun.glb')
 
   const blackHoleRef = useRef()
   const planetARef = useRef()
@@ -73,9 +74,9 @@ const SpaceScene = () => {
   )
 }
 
-useGLTF.preload('/models/gargantua_the_black_hole.glb')
-useGLTF.preload('/models/stylized_planet.glb')
-useGLTF.preload('/models/purple_planet.glb')
-useGLTF.preload('/models/sun.glb')
+useGLTF.preload(import.meta.env.BASE_URL + 'models/gargantua_the_black_hole.glb')
+useGLTF.preload(import.meta.env.BASE_URL + 'models/stylized_planet.glb')
+useGLTF.preload(import.meta.env.BASE_URL + 'models/purple_planet.glb')
+useGLTF.preload(import.meta.env.BASE_URL + 'models/sun.glb')
 
 export default SpaceScene
