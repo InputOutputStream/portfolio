@@ -112,13 +112,14 @@ const techStackImgs = [
   },
 ];
 
+// 3D
 const techStackIcons = [
-  {
-    name: "React Developer",
-    modelPath: "/models/react_logo-transformed.glb",
-    scale: 1,
-    rotation: [0, 0, 0],
-  },
+  // {
+  //   name: "React Developer",
+  //   modelPath: "/models/react_logo-transformed.glb",
+  //   scale: 1,
+  //   rotation: [0, 0, 0],
+  // },
   {
     name: "Python Developer",
     modelPath: "/models/python-transformed.glb",
@@ -131,18 +132,34 @@ const techStackIcons = [
     scale: 5,
     rotation: [0, -Math.PI / 2, 0],
   },
+  // {
+  //   name: "Interactive Developer",
+  //   modelPath: "/models/three.js-transformed.glb",
+  //   scale: 0.05,
+  //   rotation: [0, 0, 0],
+  // },
   {
-    name: "Interactive Developer",
-    modelPath: "/models/three.js-transformed.glb",
-    scale: 0.05,
-    rotation: [0, 0, 0],
-  },
-  {
-    name: "Project Manager",
+    name: "Git",
     modelPath: "/models/git-svg-transformed.glb",
     scale: 0.05,
     rotation: [0, -Math.PI / 4, 0],
   },
+  {
+    name: "C Programming",
+    modelPath: "/models/c_programming_language.glb",
+    scale: 1,
+    rotation: [1.7, -Math.PI / 7.5, -0.2],
+  },{
+    name: "C++ Programming",
+    modelPath: "/models/cpp.glb",
+    scale: 0.075,
+    rotation: [0, 0, 0],
+   },
+  // {  name: "Docker",
+  //   modelPath: "/models/docker_logo.glb",
+  //   scale: 0.075,
+  //   rotation: [0, 0, 0],
+  // },
 ];
 
 const expCards = [

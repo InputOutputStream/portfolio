@@ -25,9 +25,9 @@ const TechIcon = ({ model }) => {
         <Environment preset="city" />
         <OrbitControls enableZoom={false} />
 
-        <Float speed={5.5} rotationIntensity={0.5} floatIntensity={0.9}>
+        <Float speed={5.5} rotationIntensity={2} floatIntensity={1}>
             <group scale={model.scale} rotation={model.rotation}>
-                {/* <primitive object={scene.scene} /> */}
+                 <primitive object={scene.scene} /> 
             </group>
         </Float>
     </Canvas>
