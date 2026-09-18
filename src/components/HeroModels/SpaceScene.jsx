@@ -15,16 +15,21 @@ import { useFrame } from '@react-three/fiber'
  *   sun.glb
  */
 
-const SpaceScene = () => {
+const SpaceScene = ({ mobile = false }) => {
   const blackHole = useGLTF(import.meta.env.BASE_URL + 'models/gargantua_the_black_hole.glb')
   const planetA = useGLTF(import.meta.env.BASE_URL + 'models/stylized_planet.glb')
   const planetB = useGLTF(import.meta.env.BASE_URL + 'models/purple_planet.glb')
-  const planetC = useGLTF(import.meta.env.BASE_URL + 'models/sun.glb')
+  // Hooks can't be called conditionally, so the GLTF is always loaded (it's
+  // preloaded/cached below anyway); what's actually skipped on mobile is
+  // rendering it — see the `!mobile && planetC` check further down. That
+  // still saves the draw call and animation work on mobile, just not the
+  // network fetch.
+  // const planetC = useGLTF(import.meta.env.BASE_URL + 'models/sun.glb')
 
   const blackHoleRef = useRef()
   const planetARef = useRef()
   const planetBRef = useRef()
-  const planetCRef = useRef()
+  // const planetCRef = useRef()
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
@@ -41,13 +46,11 @@ const SpaceScene = () => {
       planetBRef.current.position.z = Math.sin(t * 0.1 + Math.PI) * 6 - 2
       planetBRef.current.rotation.y = t * 0.2
     }
-    if (planetCRef.current) {    
-      planetCRef.current.position.x = Math.cos(t * 0.07) * 8
-      planetCRef.current.position.z = Math.sin(t * 0.07) * 8 - 2
-      planetCRef.current.rotation.y = t * 0.15
-    }
-
-    
+    // if (planetCRef.current) {
+    //   planetCRef.current.position.x = Math.cos(t * 0.07) * 8
+    //   planetCRef.current.position.z = Math.sin(t * 0.07) * 8 - 2
+    //   planetCRef.current.rotation.y = t * 0.15
+    // }
   })
 
   return (
@@ -64,9 +67,11 @@ const SpaceScene = () => {
         <primitive object={planetB.scene} />
       </group>
 
-      <group ref={planetCRef} scale={0.5}>
-        <primitive object={planetC.scene} />
-      </group>
+      {/* {!mobile && planetC && (
+        <group ref={planetCRef} scale={0.5}>
+          <primitive object={planetC.scene} />
+        </group>
+      )} */}
 
       <ambientLight intensity={0.35} color="#5fb8b0" />
       <pointLight position={[0, 0, 0]} intensity={3} color="#FABF65" distance={20} />
@@ -77,6 +82,6 @@ const SpaceScene = () => {
 useGLTF.preload(import.meta.env.BASE_URL + 'models/gargantua_the_black_hole.glb')
 useGLTF.preload(import.meta.env.BASE_URL + 'models/stylized_planet.glb')
 useGLTF.preload(import.meta.env.BASE_URL + 'models/purple_planet.glb')
-useGLTF.preload(import.meta.env.BASE_URL + 'models/sun.glb')
+// useGLTF.preload(import.meta.env.BASE_URL + 'models/sun.glb')
 
 export default SpaceScene

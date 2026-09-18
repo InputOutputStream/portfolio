@@ -2,14 +2,14 @@ import React, { useRef } from 'react'
 import { gsap } from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
+import { showcaseProjects } from '../constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const ShowCaseSection = () => {
     const sectionRef = useRef(null)
     const project1Ref = useRef(null)
-    const project2Ref = useRef(null)
-    const project3Ref = useRef(null)
+    const projectRefs = useRef([])
 
     useGSAP(() => {
         // Fade in the entire section
@@ -24,11 +24,7 @@ const ShowCaseSection = () => {
         )
 
         // Animate each project when it enters the viewport
-        const projects = [
-            project1Ref.current,
-            project2Ref.current,
-            project3Ref.current,
-        ]
+        const projects = [project1Ref.current, ...projectRefs.current]
 
         projects.forEach((project, index) => {
             if (!project) return
@@ -55,6 +51,8 @@ const ShowCaseSection = () => {
         })
     }, [])
 
+    const { main, secondary } = showcaseProjects
+
     return (
         <section
             id="work"
@@ -65,70 +63,69 @@ const ShowCaseSection = () => {
                 <div className="showcaselayout">
 
                     {/* Left side — main project */}
-                    <div
+                    <a
+                        href={main.link}
+                        target="_blank"
+                        rel="noreferrer"
                         className="first-project-wrapper"
                         ref={project1Ref}
                     >
                         <div className="image-wrapper">
                             <img
-                                src={import.meta.env.BASE_URL + "images/project1.png"}
-                                alt="Thoth Cloud"
+                                src={main.image}
+                                alt={main.title}
+                                loading="lazy"
                             />
                         </div>
 
                         <div className="text-content">
-                            <h2>
-                                Thoth Cloud — a multi-tenant IaaS platform
-                                I'm building from scratch
-                            </h2>
+                            <div className="badges">
+                                {main.tags.map((tag) => (
+                                    <span
+                                        key={tag}
+                                        className="font-mono text-xs uppercase tracking-widest text-amber border border-amber-dim/40 rounded px-2 py-1"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+
+                            <h2>{main.title}</h2>
 
                             <p className="text-white-50 md:text-xl">
-                                C++ backend (cpp-httplib) over libvirt,
-                                orchestrating KVM virtual machines and Docker
-                                Swarm workloads across multiple physical hosts.
-                                Handles VM creation, live migration, snapshots,
-                                and noVNC console access — tested with 10+
-                                simultaneous VMs.
+                                {main.description}
                             </p>
                         </div>
-                    </div>
+                    </a>
 
                     {/* Right side — other projects */}
                     <div className="project-list-wrapper overflow-hidden">
+                        {secondary.map((project, index) => (
+                            <a
+                                href={project.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="project"
+                                key={project.title}
+                                ref={(el) => (projectRefs.current[index] = el)}
+                            >
+                                <div
+                                    className="image-wrapper"
+                                    style={{ backgroundColor: project.bg }}
+                                >
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        loading="lazy"
+                                    />
+                                </div>
 
-                        <div
-                            className="project"
-                            ref={project2Ref}
-                        >
-                            <div className="image-wrapper bg-[#16213e]">
-                                <img
-                                    src={import.meta.env.BASE_URL + "images/project2.png"}
-                                    alt="PKI Infrastructure"
-                                />
-                            </div>
-
-                            <h2>
-                                PKI Infrastructure & universal TLS wrapper
-                            </h2>
-                        </div>
-
-                        <div
-                            className="project"
-                            ref={project3Ref}
-                        >
-                            <div className="image-wrapper bg-[#0f3460]">
-                                <img
-                                    src={import.meta.env.BASE_URL + "images/project3.png"}
-                                    alt="IntelliStore"
-                                />
-                            </div>
-
-                            <h2>
-                                IntelliStore — vision-based auto-checkout
-                                system
-                            </h2>
-                        </div>
-
+                                <h2>{project.title}</h2>
+                                <p className="text-white-50 text-sm font-mono mt-2">
+                                    {project.description}
+                                </p>
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>

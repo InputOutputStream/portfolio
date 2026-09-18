@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { words } from '../constants'
 import Button from '../components/Button'
-import HeroExperience from '../components/HeroModels/HeroExperience'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { AnimatedCounter } from '../components/AnimatedCounter'
+
+// three.js + @react-three/drei + @react-three/postprocessing together are
+// one of the heaviest chunks in this app. Previously HeroExperience was a
+// static import, so that whole chunk was fetched and parsed before the
+// hero text/CTA could become interactive — on a slow mobile connection
+// that's a multi-hundred-KB tax paid before a person can even read the
+// headline. React.lazy code-splits it into its own chunk that the browser
+// fetches in parallel with (not before) everything else on the page.
+const HeroExperience = lazy(() => import('../components/HeroModels/HeroExperience'))
 
 
 const Hero = () => {
@@ -82,7 +90,9 @@ const Hero = () => {
             {/*Right: 3D Model */}
             <figure>
                 <div className="hero-3d-layout">
-                    <HeroExperience />
+                    <Suspense fallback={null}>
+                        <HeroExperience />
+                    </Suspense>
                 </div>
             </figure>
         </div>

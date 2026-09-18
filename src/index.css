@@ -115,14 +115,24 @@ section {
   }
 
   .navbar {
-    @apply fixed w-full left-1/2 py-5 px-5 md:px-20 -translate-x-1/2 z-[100] transition-all duration-300 ease-in-out;
+    /* `top` used to jump between 0 and 2.5rem (md:top-10) purely based on
+       the scrolled/not-scrolled class, on top of a scroll listener with no
+       hysteresis — any tiny scroll near the threshold flickered the whole
+       bar up and down. Both states now pin the same `top` value and only
+       animate background/border/shadow, which are compositor-only
+       properties (no layout reflow), plus `will-change` so the browser
+       keeps this on its own layer instead of repainting the transition. */
+    @apply fixed w-full left-1/2 top-0 py-5 px-5 md:px-20 -translate-x-1/2 z-[100]
+      transition-[background-color,border-color,box-shadow] duration-300 ease-in-out
+      bg-transparent border-b border-transparent;
+    will-change: background-color, border-color;
 
     &.scrolled {
-      @apply top-0 bg-black-100/95 backdrop-blur border-b border-black-200;
+      @apply bg-black-100/95 backdrop-blur border-b border-black-200;
     }
 
     &.not-scrolled {
-      @apply md:top-10 top-0 bg-transparent;
+      @apply md:mt-10 mt-0 bg-transparent;
     }
 
     .inner {

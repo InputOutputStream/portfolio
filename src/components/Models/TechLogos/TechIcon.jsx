@@ -1,35 +1,46 @@
-import { Environment, Float, OrbitControls } from '@react-three/drei'
-import { useGLTF } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
-import { useEffect } from 'react';
-import * as THREE from 'three'
+import React, { Suspense, useRef } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { useGLTF, Center, Environment } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 
-const TechIcon = ({ model }) => {
+// Loads whatever .glb the constants entry points to and applies its own
+// scale/rotation — same generic-loader pattern as SpaceScene.jsx, so any
+// new tech icon just needs an entry in techStackIcons, no new component.
+const Model = ({ model }) => {
+  const { scene } = useGLTF(model.modelPath)
+  const ref = useRef()
 
-    const scene = useGLTF(model.modelPath);
-    
-    useEffect(() => {
-        if(model.name === 'Interactive Developer'){
-            scene.scene.traverse((child) => {
-                if(child.isMesh && child.name === 'Object_5'){
-                    child.material = new THREE.MeshStandardMaterial({color :'white'})
-                }
-            })
-        }
-    })
+  useFrame((_, delta) => {
+    if (ref.current) ref.current.rotation.y += delta * 0.4
+  })
 
   return (
-    <Canvas>
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5,5,5]} intensity={1}/>
-        <Environment preset="city" />
-        <OrbitControls enableZoom={false} />
+    <Center>
+      <group
+        ref={ref}
+        scale={model.scale}
+        rotation={model.rotation}
+      >
+        <primitive object={scene} />
+      </group>
+    </Center>
+  )
+}
 
-        <Float speed={5.5} rotationIntensity={2} floatIntensity={1}>
-            <group scale={model.scale} rotation={model.rotation}>
-                 <primitive object={scene.scene} /> 
-            </group>
-        </Float>
+const TechIcon = ({ model }) => {
+  return (
+    <Canvas
+      camera={{ position: [0, 0, 5], fov: 45 }}
+      dpr={[1, 1.5]}
+      gl={{ antialias: true, powerPreference: 'high-performance', alpha: true }}
+      style={{ background: 'transparent' }}
+    >
+      <ambientLight intensity={0.7} />
+      <directionalLight position={[3, 5, 4]} intensity={1.2} />
+      <Suspense fallback={null}>
+        <Environment preset="city" />
+        <Model model={model} />
+      </Suspense>
     </Canvas>
   )
 }

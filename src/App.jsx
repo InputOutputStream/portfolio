@@ -5,6 +5,7 @@ import LogoSection from "./sections/LogoSection"
 import ExperienceSection from "./sections/ExperienceSection"
 import NavBar from "./components/NavBar"
 import TechStack from "./sections/TechStack"
+import OpenSource from "./sections/OpenSource"
 import Testimonials from "./sections/Testimonials"
 import Contact from "./sections/Contact"
 import Footer from "./sections/Footer"
@@ -19,6 +20,7 @@ const App = () => {
       <FeartureCards />
       <ExperienceSection/>
       <TechStack />
+      <OpenSource />
       <Testimonials />
       <Contact />
       <Footer />

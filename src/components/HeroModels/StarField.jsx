@@ -27,6 +27,10 @@ const StarField = ({ count = 300, radius = 12, color = "#D14533" }) => {
     return { positions, seeds };
   }, [count, radius]);
 
+  // Used as a per-mount phase offset below so the collective twinkle isn't
+  // perfectly identical across every StarField instance on the page.
+  const twinklePhase = seeds[0] ?? 0;
+
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     if (pointsRef.current) {
@@ -34,7 +38,7 @@ const StarField = ({ count = 300, radius = 12, color = "#D14533" }) => {
     }
     if (materialRef.current) {
       // gentle collective twinkle via opacity pulse
-      materialRef.current.opacity = 0.55 + Math.sin(t * 0.8) * 0.2;
+      materialRef.current.opacity = 0.55 + Math.sin(t * 0.8 + twinklePhase) * 0.2;
     }
   });
 

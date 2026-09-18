@@ -95,7 +95,19 @@ const ExperienceSection = () => {
                                 </span>
                               </div>
                               <div>
-                                <h1 className="font-semibold text-3xl">{card.title}</h1>
+                                <div className="flex items-center gap-4 flex-wrap">
+                                  <h1 className="font-semibold text-3xl">{card.title}</h1>
+                                  {card.link && (
+                                    <a
+                                      href={card.link}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className="font-mono text-xs uppercase tracking-widest text-amber border border-amber-dim/40 rounded px-2 py-1 hover:bg-amber hover:text-black-100 transition-colors duration-300"
+                                    >
+                                      Voir →
+                                    </a>
+                                  )}
+                                </div>
                                 <p className="my-5 text-white-50 font-mono text-sm">
                                   {card.date}
                                 </p>
